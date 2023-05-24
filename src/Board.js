@@ -34,11 +34,26 @@ function Board({ nrows, ncols, chanceLightStartsOn }) {
   function createBoard() {
     let initialBoard = [];
     // TODO: create array-of-arrays of true/false values
+    for (let i = 0; i < nrows; i++) {
+        initialBoard[i] = [];
+        for (let j = 0; j < ncols; j++) {
+        initialBoard[i][j] = <div><Cell flipCellsAroundMe={flipCellsAround}
+                                        isLit={chanceLightStartsOn()} /></div>;
+        }
+      }
     return initialBoard;
   }
 
   function hasWon() {
     // TODO: check the board in state to determine whether the player has won.
+    for (let i = 0; i < nrows; i++) {
+      for (let j = 0; j < ncols; j++) {
+        if (board[i][j].isLit !== false) {
+          return false;
+      }
+      gameWon();
+      }
+    }
   }
 
   function flipCellsAround(coord) {
@@ -62,7 +77,7 @@ function Board({ nrows, ncols, chanceLightStartsOn }) {
   }
 
   // if the game is won, just show a winning msg & render nothing else
-
+  // function gameWon() {}
   // TODO
 
   // make table board
