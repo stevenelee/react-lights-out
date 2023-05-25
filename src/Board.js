@@ -95,13 +95,14 @@ function Board({ nrows, ncols, chanceLightStartsOn }) {
 
       for (let x=0; x<row.length; x++){
         tempRow.push(
-        <Cell
-        flipCellsAroundMe={()=>flipCellsAround(`${y}-${x}`)}
-        isLit={row[x]}
-        />
+          <Cell
+            key={`${y}-${x}`}
+            flipCellsAroundMe={()=>flipCellsAround(`${y}-${x}`)}
+            isLit={row[x]}
+          />
         )
       }
-      actualGameboard.push(<tr>{tempRow}</tr>)
+      actualGameboard.push(<tr key={y}>{tempRow}</tr>)
     }
     return (
       <table>{actualGameboard}</table>
