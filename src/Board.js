@@ -44,8 +44,8 @@ function Board({ nrows, ncols, chanceLightStartsOn }) {
     return initialBoard;
   }
 
+  //check the board in state to determine whether the player has won.
   function hasWon() {
-    //check the board in state to determine whether the player has won.
     for (let i = 0; i < nrows; i++) {
       for (let j = 0; j < ncols; j++) {
         if (board[i][j] === false) return false;
@@ -72,20 +72,18 @@ function Board({ nrows, ncols, chanceLightStartsOn }) {
         newBoard.push([...row])
       }
 
+      // in the copy, flip this cell and the cells around it
       flipCell(y, x, newBoard);
       flipCell(y-1, x, newBoard);
       flipCell(y+1, x, newBoard);
       flipCell(y, x-1, newBoard);
       flipCell(y, x+1, newBoard);
 
-
-      // TODO: in the copy, flip this cell and the cells around it
-      // TODO: return the copy
+      // return the copy
       return newBoard
     });
   }
 
-  // TODO
 
   // make table board
   function makeTableBoard(){
@@ -110,8 +108,6 @@ function Board({ nrows, ncols, chanceLightStartsOn }) {
     )
   }
 // if the game is won, just show a winning msg & render nothing else
-  // function gameWon() {}
-  // const won = hasWon()
   return (
     <div>
     {hasWon() ? <h1>Hey you won!</h1> : makeTableBoard()}
